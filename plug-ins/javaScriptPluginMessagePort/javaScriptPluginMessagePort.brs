@@ -17,6 +17,9 @@ Function javaScriptPluginMessagePort_Initialize(msgPort as object, userVariables
         userVariables: userVariables,
         bsp: bsp,
         ProcessEvent: Function(event as object)
+            if (type(m.htmlWidget) <> "roHTMLWidget")
+                m.htmlWidget = findHTMLWidget(m.bsp)
+            endif
             if type(event) = "roAssociativeArray" then
                 if type(event["EventType"]) = "roString"
                     if event["EventType"] = "SEND_PLUGIN_MESSAGE" then
@@ -41,6 +44,7 @@ Function javaScriptPluginMessagePort_Initialize(msgPort as object, userVariables
                                     PluginMessage: parameter
                                 }
                                 m.msgPort.PostMessage(pluginMessageCmd)
+                                return true
                             end if
                         end if
                     end if
