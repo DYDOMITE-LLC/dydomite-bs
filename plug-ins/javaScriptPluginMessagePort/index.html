@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <title>JavaScript to BA Plugin Message Port</title>
+</head>
+<body>
+<p id="text" style="color: white">Press the A key!</p>
+<button onclick='bsMessagePort.PostBSMessage({button:"Button1"})'>Button1</button>
+<button onclick='bsMessagePort.PostBSMessage({button:"Button2"})'>Button2</button>
+
+<script>
+    bsMessagePort = new BSMessagePort();
+    bsMessagePort.onbsmessage = function(msg){
+        console.log(msg);
+        document.getElementById("text").innerHTML = msg.data.pluginmessage;
+    };
+    bsMessagePort.PostBSMessage({htmlready:true});
+
+</script>
+</body>
+</html>

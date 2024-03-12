@@ -2,7 +2,7 @@ REM
 REM @title               JavaScript PluginMessage Port
 REM @author              Lee Dydo
 REM @date-created        03/11/2024
-REM @date-last-modified  03/11/2024
+REM @date-last-modified  03/12/2024
 REM @minimum-FW          1.0.0
 REM
 REM @description         This is a plugin for convenient messaging between
@@ -25,7 +25,7 @@ Function javaScriptPluginMessagePort_Initialize(msgPort as object, userVariables
                     if event["EventType"] = "SEND_PLUGIN_MESSAGE" then
                         if event["PluginName"] = "javaScriptPluginMessagePort" then
                             pluginMessage$ = event["PluginMessage"]
-                            m.htmlwidget.postJSMessage({ pluginMessage: event[pluginMessage$] })
+                            m.htmlwidget.postJSMessage({ pluginMessage: pluginMessage$ })
                             return true
                         end if
                     end if
@@ -62,6 +62,6 @@ Function FindHTMLWidget(bsp)
             return baZone.loadingHtmlWidget
         end if
     end for
-    print "Couldn't find htmlwidget"
+    ? "Couldn't find HTML Widget" 'Debug print statement
     return false
 End Function
